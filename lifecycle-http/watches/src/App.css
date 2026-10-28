@@ -1,0 +1,219 @@
+/* Общие стили страницы */
+.app-container {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #333;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+/* Стили формы добавления */
+.clock-form {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #222;
+}
+
+.form-group input {
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #000;
+  outline: none;
+  font-size: 16px;
+}
+
+.add-btn {
+  padding: 8px 30px;
+  background-color: #fff;
+  border: 1px solid #000;
+  font-size: 16px;
+  cursor: pointer;
+  height: 37px;
+  transition: background 0.2s;
+}
+
+.add-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  margin-top: 75px;
+}
+
+/* Стили списка часов */
+.clock-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.empty-message {
+  color: #777;
+  font-style: italic;
+}
+
+/* Контейнер одной карточки */
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+}
+
+/* Название города */
+.clock-title {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: normal;
+  color: #222;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Обертка для позиционирования крестика */
+.clock-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+}
+
+/* Сам циферблат */
+.analog-clock {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Кнопка удаления */
+.remove-btn {
+  position: absolute;
+  top: -10px;
+  right: -20px;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #000;
+  padding: 0;
+  line-height: 1;
+  z-index: 10;
+}
+
+.remove-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Общие стили для стрелок */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  background-color: #000;
+}
+
+/* Часовая стрелка */
+.hour-hand {
+  width: 2px;
+  height: 35px;
+  margin-left: -1px;
+  background-color: transparent;
+}
+
+.hour-hand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 40px solid #000;
+}
+
+/* Минутная стрелка */
+.minute-hand {
+  width: 2px;
+  height: 45px;
+  margin-left: -1px;
+  background-color: transparent;
+}
+
+.minute-hand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 50px solid #000;
+}
+
+/* Секундная стрелка (пунктирная) */
+.second-hand {
+  width: 0;
+  height: 50px;
+  border-left: 2px dashed #000;
+  background-color: transparent;
+}
+
+/* Центральная точка */
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Цифровое время */
+.digital-time {
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}

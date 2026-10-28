@@ -1,0 +1,172 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Заголовок */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.refresh-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #28a745;
+  background: white;
+  color: #28a745;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: #f0fff4;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Список заметок */
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Карточка */
+.note-card {
+  position: relative;
+  width: 300px;
+  min-height: 180px;
+  border: 1px solid #000;
+  padding: 30px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-content {
+  text-align: left;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+/* Кнопка удаления (крестик) */
+.delete-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background: #fff;
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  background: #fee;
+  transform: scale(1.1);
+}
+
+/* Форма добавления */
+.notes-form-container {
+  width: 400px;
+}
+
+.notes-form-container h3 {
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.notes-form {
+  position: relative;
+  width: 100%;
+}
+
+.notes-form textarea {
+  width: 100%;
+  height: 120px;
+  border: 1px solid #000;
+  padding: 15px;
+  padding-bottom: 40px;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.submit-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #eee;
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.loading {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
