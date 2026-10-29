@@ -1,18 +1,5 @@
-import { useState, useEffect } from 'react';
-
-function WorldClock({ clock, onRemove }) {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  }, []);
-
-  const now = time;
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+function WorldClock({ clock, onRemove, currentTime }) {
+  const utc = currentTime.getTime() + currentTime.getTimezoneOffset() * 60000;
   const cityTime = new Date(utc + clock.timezone * 3600000);
 
   const hours = cityTime.getHours();
@@ -25,19 +12,16 @@ function WorldClock({ clock, onRemove }) {
 
   return (
     <div className="clock-container">
-      {}
       <h3 className="clock-title">{clock.name}</h3>
 
-      {}
       <div className="clock-wrapper">
         <div className="analog-clock">
-          <div className="hand hour-hand" style={{ transform: `rotate(${hoursDegrees}deg)` }}></div>
-          <div className="hand minute-hand" style={{ transform: `rotate(${minutesDegrees}deg)` }}></div>
-          <div className="hand second-hand" style={{ transform: `rotate(${secondsDegrees}deg)` }}></div>
-          <div className="center-dot"></div>
+          <div className="hand hour-hand" style={{ transform: `rotate(${hoursDegrees}deg)` }} />
+          <div className="hand minute-hand" style={{ transform: `rotate(${minutesDegrees}deg)` }} />
+          <div className="hand second-hand" style={{ transform: `rotate(${secondsDegrees}deg)` }} />
+          <div className="center-dot" />
         </div>
 
-        {}
         <button className="remove-btn" onClick={() => onRemove(clock.id)}>
           ✕
         </button>
