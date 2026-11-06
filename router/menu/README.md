@@ -1,16 +1,73 @@
-# React + Vite
+# Навигационное меню
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Необходимо реализовать меню для сайта гоночного такси с пунктами «Главная», «Дрифт-такси», «Time Attack» и «Forza Karting». При переходе на страницу соответствующий пункт меню должен подсветиться:
 
-Currently, two official plugins are available:
+![Навигационное меню](./assets/menu.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Общее описание
 
-## React Compiler
+Разработайте одностраничное приложение (SPA) на React с верхним навигационным меню. Переходы между экранами осуществляются через React Router без перезагрузки страницы, активный пункт меню визуально выделяется. Сборку выполняйте через Vite.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Техническое задание
 
-## Expanding the Oxlint configuration
+1. Настроить клиентский роутинг c использованием React Router.
+2. Реализовать верхнее меню навигации на основе `NavLink`.
+3. Создать 4 страницы с маршрутами: `"/"`, `"/drift"`, `"/timeattack"`, `"/forza"`.
+4. Обеспечить подсветку активного пункта меню классом `menu__item-active`.
+5. Прямой ввод URL в адресную строку браузера должен открывать соответствующую страницу.
+6. Дополнительно (необязательно): страница 404 для несуществующих маршрутов с ссылкой «На главную».
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Состав программы
+
+* Корневой компонент `App`.
+* Компонент `Menu`.
+* Папка `pages/` с компонентами: Home, Drift, TimeAttack, Forza.
+* Файл со стилями `index.css` (в том числе оформление меню).
+* Конфигурация Vite и базовые скрипты запуска/сборки.
+
+## Функциональные требования
+
+* При клике по пунктам меню изменяется URL и отображается соответствующая страница.
+* Активный пункт меню подсвечивается.
+* Переходы выполняются без перезагрузки.
+* Ввод прямого URL открывает нужную страницу.
+* Корневой маршрут не считается активным на вложенных путях.
+
+## Требования к коду
+
+* Использовать React и React Router (актуальное API без устаревших пропов).
+* Сборка через Vite.
+* Компоненты разнесены по папкам (`components/`, `pages/`).
+* Подсветка активного пункта реализована через `NavLink`.
+* Код аккуратный и структурированный, без дублирования.
+
+## Требования к стилям
+
+* Меню оформлено с классами `menu`, `menu__item`, `menu__item-active`.
+* Состояние «активного» пункта заметно отличается от обычного.
+* Вёрстка не должна «прыгать» при переключениях маршрутов.
+* Дополнительно (по желанию): адаптивность меню на узких экранах.
+
+---
+
+## Описание компонента
+
+Компонент должен создавать HTML-разметку вида:
+
+```html
+<nav class="menu">
+  <a class="menu__item" href="/">Главная</a>
+  <a class="menu__item" href="/drift">Дрифт-такси</a>
+  <a class="menu__item" href="/timeattack">Time Attack</a>
+  <a class="menu__item" href="/forza">Forza Karting</a>
+</nav>
+```
+
+Активный пункт меню помечается классом `menu__item-active`.
+
+## Реализация
+
+Необходимо реализовать компонент `Menu`.
+Воспользуйтесь файлом `App.js` и стилями `css/index.css` из каталога в качестве отправной точки. Замените ими автоматически сгенерированные при создании проекта.
+
+**Обратите внимание**: в `App.js` может быть несколько компонентов для удобства копирования. В итоговом решении рекомендуется разнести их по отдельным файлам.
