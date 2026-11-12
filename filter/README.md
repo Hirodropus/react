@@ -1,129 +1,138 @@
-Портфолио с фильтрами
+Фильтрация
 ===
-## 1. Описание задания
-Вам предстоит создать веб-приложение для отображения портфолио проектов с возможностью их фильтрации по категориям. Основная цель — отработать навыки управления состоянием и взаимодействия компонентов в React. Приложение должно быть реализовано как набор компонентов с чётким разделением ответственности между ними. Внешний вид и функциональность должны соответствовать макету на изображении:
 
-![portfolio-all](src/assets/portfolio-all.png)
+## Задача
+Расширить функциональность CRUD-приложения для управления услугами, добавив возможность фильтрации по названию услуги.
 
-## 2. Состав компонентов
-Архитектура приложения должна состоять из трёх компонентов:
+## Настройка проекта
 
-- **Portfolio (компонент с состоянием):** главный компонент, который управляет логикой всего приложения. Он хранит в себе состояние (активный фильтр) и передаёт данные и функции дочерним компонентам.
-
-- **Toolbar (компонент без состояния):** отвечает за отображение панели с кнопками-фильтрами. Получает список фильтров, информацию о выбранном фильтре и функцию для обработки клика.
-
-- **ProjectList (компонент без состояния):** отвечает исключительно за отображение списка карточек проектов, которые он получает от родительского компонента.
-
-## 3. Функциональные требования
-**1. Инициализация:**
-
-- Компонент `Portfolio` при инициализации содержит полный список проектов и устанавливает фильтр по умолчанию в `"All"`.
-
-**2. Взаимодействие `Portfolio` и `Toolbar`:**
-
-- `Portfolio` передаёт в `Toolbar` список уникальных категорий для фильтров через пропс `filters`.
-
-- `Portfolio` передаёт в `Toolbar` текущий активный фильтр через пропс `selected`.
-
-- `Portfolio` передаёт в `Toolbar` функцию-обработчик для смены фильтра через пропс `onSelectFilter`.  
-
-Пример использования компонента `Toolbar`:
-```
-<Toolbar
-  filters={["All", "Websites", "Flayers", "Business Cards"]}
-  selected="All"
-  onSelectFilter={(filter) => {console.log(filter);}}/>
+Создайте новый проект или используйте готовое решение из задания [editing](../editing):
+```bash
+npm create vite@latest filter -- --template react-ts
+cd filter
+npm install redux react-redux nanoid
+npm run dev
 ```
 
-В этом примере при выборе фильтра его название будет выведено в консоль. Например, «Business Cards».
+## Функциональные требования
 
-**3. Обработка действий пользователя:**
+### Обязательная функциональность
 
-- При нажатии на кнопку фильтра в `Toolbar` вызывается переданный обработчик `onSelectFilter`, который получает в качестве аргумента название выбранной категории (например, "Websites").
+**Поиск и фильтрация:**
+- [ ] Поле поиска над списком услуг с плейсхолдером "Поиск услуг..."
+- [ ] Фильтрация по названию услуги (поиск без учета регистра)
+- [ ] Поиск в реальном времени (фильтрация при каждом вводе символа)
+- [ ] Кнопка очистки поиска (✕) справа от поля
+- [ ] Отображение статистики: "Найдено: X из Y услуг"
 
-- В `Toolbar` активный фильтр должен визуально выделяться (например, другим цветом фона или текста).
+**CRUD операции с фильтром:**
+- [ ] Все функции редактирования работают с отфильтрованным списком
+- [ ] Добавление новой услуги (появляется в списке, если соответствует фильтру)
+- [ ] Редактирование отфильтрованной услуги
+- [ ] Удаление отфильтрованной услуги
 
-**4. Управление состоянием:**
+**Состояния фильтра:**
+- [ ] Пустой фильтр → показать все услуги
+- [ ] Нет результатов → показать "Услуги не найдены"
+- [ ] Есть результаты → показать отфильтрованный список
 
-- Получив новый фильтр, `Portfolio` обновляет своё внутреннее состояние (`state`), сохраняя новое значение активного фильтра.
+### UI/UX требования
+- [ ] Поле поиска всегда видно и доступно
+- [ ] При очистке фильтра фокус остается на поле поиска
+- [ ] Подсветка найденных символов в названиях (бонус)
+- [ ] Debounce для оптимизации (задержка 300мс) (бонус)
 
-**5. Фильтрация и отображение проектов:**
+## Архитектура Redux
 
-- Компонент `Portfolio` фильтрует общий список проектов в соответствии с активным фильтром из своего состояния.
-
-- Отфильтрованный список проектов передаётся в компонент `ProjectList` через пропс `projects`.
-
-- `ProjectList` отображает полученный список проектов.
-
-Пример:
-![portfolio-cards.png](src/assets/portfolio-cards.png)
-
-## 4. Требования к коду
-- Компонент `Portfolio` должен быть реализован как классовый компонент для управления состоянием.
-
-- Компоненты `Toolbar` и `ProjectList` должны быть функциональными (stateless) компонентами.
-
-- Для передачи данных от родителя к дочерним компонентам используйте пропсы (props).
-
-- Для передачи данных от дочернего компонента (`Toolbar`) к родителю (`Portfolio`) используйте механизм обратного вызова (callback function).
-
-<details> <summary>Набор данных для отображения</summary>
-  
-```js
-  [{
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
-  category: "Business Cards"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/codystretch.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_003.jpg",
-  category: "Business Cards"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290.png",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
-  category: "Business Cards"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_1.png",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_2.png",
-  category: "Flayers"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/the_ninetys_brand.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/dia.jpg",
-  category: "Business Cards"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
-  category: "Business Cards"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
-  category: "Websites"
-}, {
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
-  category: "Flayers"
-}]
+### Расширенная структура состояния
+```typescript
+interface RootState {
+  services: {
+    items: Service[];
+  };
+  filter: {
+    searchTerm: string;
+  };
+  form: {
+    name: string;
+    price: string;
+    editingId: string | null;
+    errors: {
+      name?: string;
+      price?: string;
+    };
+  };
+}
 ```
 
-</details>
+### Дополнительные Actions
+```typescript
+// Управление фильтром
+SET_SEARCH_TERM  // { searchTerm: string }
+CLEAR_SEARCH     // void
+```
 
+### Селекторы для производных данных
+```typescript
+import { createSelector } from 'redux'; // npm install reselect
 
+// Селектор для фильтрации услуг
+export const selectFilteredServices = createSelector(
+  [(state: RootState) => state.services.items, (state: RootState) => state.filter.searchTerm],
+  (services, searchTerm) => {
+    if (!searchTerm.trim()) {
+      return services;
+    }
+    return services.filter(service =>
+      service.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+);
+
+// Селектор для статистики
+export const selectFilterStats = createSelector(
+  [selectFilteredServices, (state: RootState) => state.services.items],
+  (filteredServices, allServices) => ({
+    found: filteredServices.length,
+    total: allServices.length
+  })
+);
+```
+
+## Анализ существующих решений
+
+**Примеры фильтрации в популярных системах:**
+- **GitHub** - поиск репозиториев с фильтрами по языку, дате
+- **Gmail** - поиск по отправителю, теме, содержимому
+- **Яндекс.Маркет** - фильтры по цене, производителю, характеристикам
+- **Notion** - поиск по содержимому страниц
+
+**Общие паттерны:**
+- Поиск в реальном времени
+- Сохранение состояния фильтра при навигации
+- Очистка фильтра одним кликом
+- Показ количества результатов
+
+## Подсказки по реализации
+
+1. **Селекторы**: используйте `createSelector` из библиотеки `reselect` для мемоизации
+2. **Поиск**: `string.toLowerCase().includes()` для поиска без учета регистра
+3. **Статистика**: вычисляйте через селектор, а не храните в state
+4. **Debounce**: используйте `setTimeout`/`clearTimeout` или библиотеку `lodash.debounce`
+
+## Дополнительные задачи (необязательно)
+- [ ] Поиск по нескольким полям (название + описание)
+- [ ] Фильтрация по диапазону цен
+- [ ] Сохранение фильтра в URL (query параметры)
+- [ ] Автокомплит с подсказками
+- [ ] История поисковых запросов
+
+## Структура компонентов
+
+```
+components/
+├── ServiceList.tsx      // отображает отфильтрованный список
+├── ServiceForm.tsx      // форма добавления/редактирования
+├── SearchFilter.tsx     // поле поиска с очисткой
+└── FilterStats.tsx      // статистика "Найдено X из Y"
+```
