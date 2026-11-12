@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f5f5f5;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+/* ----- Форма ----- */
+.service-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.field input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field input:focus {
+  border-color: #4a90e2;
+}
+
+.error {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-save {
+  background: #4a90e2;
+  color: #fff;
+}
+.btn-save:hover {
+  background: #3a7bca;
+}
+
+.btn-cancel {
+  background: #ddd;
+  color: #333;
+}
+.btn-cancel:hover {
+  background: #c8c8c8;
+}
+
+/* ----- Список услуг ----- */
+.service-list {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.service-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-list li:last-child {
+  border-bottom: none;
+}
+
+.service-list li.editing {
+  background: #fff8e1;
+  border-left: 3px solid #f5a623;
+}
+
+.service-list .name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.service-list .price {
+  font-weight: 600;
+  color: #4a90e2;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.actions button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.actions button:hover {
+  background: #f0f0f0;
+}
+
+.actions .btn-delete {
+  color: #d9534f;
+  border-color: #e0aeb0;
+}
+
+.actions .btn-delete:hover {
+  background: #fdecec;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}

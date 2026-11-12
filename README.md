@@ -11,3 +11,6 @@
 2.1. [Жизненный цикл и работа с HTTP](lifecycle-http)
 
 2.5. [React Router](router)
+### Блок 3. Redux - управление состоянием
+
+3.1. [Redux](redux)
